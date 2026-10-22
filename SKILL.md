@@ -9,6 +9,8 @@ metadata:
 
 # Response Quality Review Skill
 
+## Goal
+
 Use this skill to evaluate a response or conversation. Do not automatically rewrite the response in a fixed style.
 
 The canonical project-style guide is in `skills/skill_response_quality.md`. The supporting design and test documents are in `docs/`.
@@ -24,7 +26,9 @@ The canonical project-style guide is in `skills/skill_response_quality.md`. The 
 7. Check terminology, completeness, recovery, risk, and unnecessary user effort.
 8. Report the smallest change with the largest improvement.
 
-## Review result
+## Output: review result
+
+Return the review in chat unless the task names a saved-report destination.
 
 Return:
 
@@ -48,7 +52,11 @@ Use only the checks that match the response:
 
 Do not apply every check mechanically. The user's goal and the technical facts have priority.
 
-## Guardrails
+## Acceptance and recovery
+
+The review covers the requested response or turns, ties issues to evidence, and gives the smallest concrete improvement without inventing facts. Missing transcript or evidence limits the verdict; identify the missing input. If tools or linked guidance are unavailable, report the unrun checks and apply only the supported review dimensions.
+
+## Boundaries and guardrails
 
 - Do not confuse concise with complete.
 - Do not delete facts merely to shorten a response.
